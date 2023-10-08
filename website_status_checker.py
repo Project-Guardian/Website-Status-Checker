@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 from urllib.parse import urlparse
 import argparse
+import os
 
 # Function to check the URL and return the status code and message
 def check_url(url, verbose):
@@ -78,6 +79,15 @@ def update_json(json_data, original_url, status_code, status_message):
 
 # Main function to perform the URL checks and update the JSON data
 def main(json_file, verbose):
+    # If json_file is not provided, use "list.json" as the default
+    if json_file is None:
+        json_file = "list.json"
+
+    # Check if the JSON file exists in the current directory
+    if not os.path.exists(json_file):
+        print(f"Error: {json_file} not found in the current directory.")
+        return
+    
     with open(json_file, 'r') as file:
         data = json.load(file)
 
@@ -106,7 +116,7 @@ if __name__ == "__main__":
     # Set up command-line argument parsing
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "-V", "--verbose", action="store_true", help="Enable verbose output")
-    parser.add_argument("json_file", help="Path to the JSON file")
+    parser.add_argument("json_file", nargs='?', help="Path to the JSON file (optional)")
     args = parser.parse_args()
     
     # Call the main function with parsed arguments
