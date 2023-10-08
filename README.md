@@ -15,7 +15,7 @@ This Python script checks the status of websites listed in a JSON file, records 
 
 
 
-pip install requests
+```pip install requests```
 
 
 4. Prepare a JSON file containing a list of websites you want to check. The JSON file should have the following structure:
@@ -44,13 +44,13 @@ pip install requests
 
 Run the script using the following command:
 
-python website_status_checker.py your_json_file.json
+```python website_status_checker.py your_json_file.json```
 
 Replace your __json_file.json__ with the path to your JSON file containing the list of websites.
 
 Optionally, use the __-v__ or __--verbose__ flag to enable verbose output. This will display additional information about the status of each URL.
 
-    python website_status_checker.py -v your_json_file.json
+```python website_status_checker.py -v your_json_file.json```
 
 ## Output
 
