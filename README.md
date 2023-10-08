@@ -1,12 +1,12 @@
-Website Status Checker
+# Website Status Checker
 
 This Python script checks the status of websites listed in a JSON file, records the results, and updates the JSON file with the status of each website.
-Prerequisites
+## Prerequisites
 
     Python 3.x
     Required Python packages: requests
 
-Usage
+## Usage
 
     Clone this repository or download the Python script to your local machine.
 
@@ -51,7 +51,7 @@ Optionally, use the -v or --verbose flag to enable verbose output. This will dis
 
     python website_status_checker.py -v your_json_file.json
 
-Output
+## Output
 
 The script will perform the following actions:
 
@@ -61,11 +61,11 @@ The script will perform the following actions:
     "Status Code" is not update if the site is completely unreachable.
 
 If a website's status code falls within the range of 4xx or 5xx, it is considered unsuccessful, and the "Reached" field is set to False. If the website's status code is not in that range, it is considered successful, and the "Reached" field is set to True. The script also records the time of the last check and, if applicable, the time of the last failure.
-Example
+## Example
 
 Here's an example of a JSON file before and after running the script:
 
-Before:
+### Before:
 
 json
 
@@ -86,7 +86,7 @@ json
     }
 }
 
-After:
+### After:
 
 json
 
