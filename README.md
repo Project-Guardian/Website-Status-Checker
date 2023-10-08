@@ -38,16 +38,16 @@ json
     // Add more websites as needed
 }
 
-    Replace "https://example.com" and "https://example2.com" with the URLs of the websites you want to check.
-    Leave the other fields ("Reached", "Last Check Time", "Last Fail Time", "Status Code", "Status Message") as null or provide an empty dict, they will be created automatically.
+    Replace **"https://example.com"** and **"https://example2.com"** with the URLs of the websites you want to check.
+    Leave the other fields (**"Reached"**, **"Last Check Time"**, **"Last Fail Time"**, **"Status Code"**, **"Status Message"**) as null or provide an empty dict, they will be created automatically.
 
 Run the script using the following command:
 
 python website_status_checker.py your_json_file.json
 
-Replace your_json_file.json with the path to your JSON file containing the list of websites.
+Replace your **json_file.json** with the path to your JSON file containing the list of websites.
 
-Optionally, use the -v or --verbose flag to enable verbose output. This will display additional information about the status of each URL.
+Optionally, use the **-v** or **--verbose** flag to enable verbose output. This will display additional information about the status of each URL.
 
     python website_status_checker.py -v your_json_file.json
 
@@ -57,10 +57,10 @@ The script will perform the following actions:
 
     Send HTTP GET requests to each website listed in the JSON file.
     Record the status code and status message for each website.
-    Update the "Reached", "Last Check Time", "Last Fail Time", "Status Code", and "Status Message" fields in the JSON file with the results of the checks.
+    Update the **"Reached"**, **"Last Check Time"**, **"Last Fail Time"**, **"Status Code"**, and **"Status Message"** fields in the JSON file with the results of the checks.
     "Status Code" is not update if the site is completely unreachable.
 
-If a website's status code falls within the range of 4xx or 5xx, it is considered unsuccessful, and the "Reached" field is set to False. If the website's status code is not in that range, it is considered successful, and the "Reached" field is set to True. The script also records the time of the last check and, if applicable, the time of the last failure.
+If a website's status code falls within the range of 4xx or 5xx, it is considered unsuccessful, and the **"Reached"** field is set to **False**. If the website's status code is not in that range, it is considered successful, and the "Reached" field is set to True. The script also records the time of the last check and, if applicable, the time of the last failure.
 ## Example
 
 Here's an example of a JSON file before and after running the script:
