@@ -13,8 +13,6 @@ This Python script checks the status of websites listed in a JSON file, records 
 2. Ensure you have Python 3.x installed on your system.
 3. Install the required Python packages using pip:
 
-
-
     pip install requests
 
 
