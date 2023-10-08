@@ -1,0 +1,10 @@
+{
+    "https://google.ca": {
+        "Reached": true,
+        "Last Check Time": null,
+        "Last Fail Time": null,
+        "Status Code": null,
+        "Status Message": null
+    },
+    "youtube.com" : {}
+}
