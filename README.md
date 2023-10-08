@@ -1,25 +1,26 @@
 # Website Status Checker
 
 This Python script checks the status of websites listed in a JSON file, records the results, and updates the JSON file with the status of each website.
+
 ## Prerequisites
 
-    Python 3.x
-    Required Python packages: requests
+- Python 3.x
+- Required Python packages: `requests`
 
 ## Usage
 
-    Clone this repository or download the Python script to your local machine.
+1. Clone this repository or download the Python script to your local machine.
+2. Ensure you have Python 3.x installed on your system.
+3. Install the required Python packages using pip:
 
-    Ensure you have Python 3.x installed on your system.
 
-    Install the required Python packages using pip:
 
 pip install requests
 
-Prepare a JSON file containing a list of websites you want to check. The JSON file should have the following structure. An example is provided file is provided:
 
-json
-```
+4. Prepare a JSON file containing a list of websites you want to check. The JSON file should have the following structure:
+
+```json
 {
     "https://example.com": {
         "Reached": null,
@@ -38,8 +39,8 @@ json
     // Add more websites as needed
 }
 ```
-    Replace __"https://example.com"__ and __"https://example2.com"__ with the URLs of the websites you want to check.
-    Leave the other fields (__"Reached"__, __"Last Check Time"__, __"Last Fail Time"__, __"Status Code"__, __"Status Message"__) as null or provide an empty dict, they will be created automatically.
+    Replace "https://example.com" and "https://example2.com" with the URLs of the websites you want to check.
+    Leave the other fields ("Reached", "Last Check Time", "Last Fail Time", "Status Code", "Status Message") as null or provide an empty dict; they will be created automatically.
 
 Run the script using the following command:
 
@@ -57,18 +58,18 @@ The script will perform the following actions:
 
     Send HTTP GET requests to each website listed in the JSON file.
     Record the status code and status message for each website.
-    Update the __"Reached"__, __"Last Check Time"__, __"Last Fail Time"__, __"Status Code"__, and __"Status Message"__ fields in the JSON file with the results of the checks.
-    "Status Code" is not update if the site is completely unreachable.
+    Update the "Reached", "Last Check Time", "Last Fail Time", "Status Code", and "Status Message" fields in the JSON file with the results of the checks.
+    "Status Code" is not updated if the site is completely unreachable.
 
-If a website's status code falls within the range of 4xx or 5xx, it is considered unsuccessful, and the __"Reached"__ field is set to __False__. If the website's status code is not in that range, it is considered successful, and the "Reached" field is set to True. The script also records the time of the last check and, if applicable, the time of the last failure.
+If a website's status code falls within the range of 4xx or 5xx, it is considered unsuccessful, and the __"Reached"__ field is set to __False__. If the website's status code is not in that range, it is considered successful, and the __"Reached"__ field is set to __True__. The script also records the time of the last check and, if applicable, the time of the last failure.
 ## Example
 
 Here's an example of a JSON file before and after running the script:
 
 ### Before:
 
-json
-```
+
+```json
 {
     "https://example.com": {
         "Reached": null,
@@ -88,8 +89,7 @@ json
 ```
 ### After:
 
-json
-```
+```json
 {
     "https://example.com": {
         "Reached": true,
