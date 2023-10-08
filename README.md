@@ -19,7 +19,7 @@ pip install requests
 Prepare a JSON file containing a list of websites you want to check. The JSON file should have the following structure. An example is provided file is provided:
 
 json
-
+```
 {
     "https://example.com": {
         "Reached": null,
@@ -37,7 +37,7 @@ json
     },
     // Add more websites as needed
 }
-
+```
     Replace __"https://example.com"__ and __"https://example2.com"__ with the URLs of the websites you want to check.
     Leave the other fields (__"Reached"__, __"Last Check Time"__, __"Last Fail Time"__, __"Status Code"__, __"Status Message"__) as null or provide an empty dict, they will be created automatically.
 
@@ -68,7 +68,7 @@ Here's an example of a JSON file before and after running the script:
 ### Before:
 
 json
-
+```
 {
     "https://example.com": {
         "Reached": null,
@@ -85,11 +85,11 @@ json
         "Status Message": null
     }
 }
-
+```
 ### After:
 
 json
-
+```
 {
     "https://example.com": {
         "Reached": true,
@@ -106,3 +106,4 @@ json
         "Status Message": "Not Found"
     }
 }
+```
