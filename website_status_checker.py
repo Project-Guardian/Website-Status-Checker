@@ -13,7 +13,7 @@ def check_url(url, verbose):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0"
         }
 
-        # Attempt to make an HTTP GET request to the provided URL
+        # Attempt to make an HTTP GET request to the provided URL (add timeout=X)
         response = requests.get(url, headers=headers)
         status_code = response.status_code
         response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
@@ -63,6 +63,10 @@ def update_json(json_data, original_url, status_code, status_message):
                 print("Current failed time " + timestamp + "\n")
             entry["Reached"] = False
         else:
+            # Adds an output if it failed previously but is not able to reconnect
+            if entry["Reached"] == False:
+                print(f"Connection successful again for {original_url}")
+                print("Current success time " + timestamp + "\n")
             entry["Reached"] = True
     else:
         # If the URL check failed:
