@@ -9,7 +9,7 @@ import os
 # Function to check the URL and return the status code and message
 def check_url(url, verbose):
     failedString = '' # Initialize failedString variable
-    for _ in range(4):  # Retry 3 times
+    for _ in range(4):  # Retry
         try:
             # Add a header
             headers = {
@@ -36,7 +36,7 @@ def check_url(url, verbose):
             time.sleep(3)
     
     # Return the status code even on failure (4XX or 5XX)
-    return response.status_code if 'response' in locals() else None, failedString
+    return response.status_code if 'response' in locals() else None, str(failedString)
 
 
 # Function to update the JSON data with the results of the URL check
