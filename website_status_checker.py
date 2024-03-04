@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 from datetime import datetime
 from urllib.parse import urlparse
 import argparse
@@ -7,29 +8,36 @@ import os
 
 # Function to check the URL and return the status code and message
 def check_url(url, verbose):
-    try:
-        # Add a header
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0"
-        }
+    failedString = '' # Initialize failedString variable
+    for _ in range(4):  # Retry 3 times
+        try:
+            # Add a header
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0"
+            }
 
-        # Attempt to make an HTTP GET request to the provided URL (add timeout=X)
-        response = requests.get(url, headers=headers)
-        status_code = response.status_code
-        response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
-        if verbose:
-            # If verbose mode is enabled, print a success message
-            print(f"Status Message for {url}: Success \n")
+            # Attempt to make an HTTP GET request to the provided URL (add timeout=X)
+            response = requests.get(url, headers=headers)
+            status_code = response.status_code
+            response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
+            if verbose:
+                # If verbose mode is enabled, print a success message
+                print(f"Status Message for {url}: Success \n")
+            
+            return status_code, "Success"
+        except requests.exceptions.RequestException as e:
+            if verbose:
+                # If verbose mode is enabled, print an error message
+                print(f"Status Message for {url}: Failure")
+                print(f"{str(e)} \n")
+            failedString = e      
+    
+            # Wait for a short duration before retrying
+            time.sleep(3)
+    
+    # Return the status code even on failure (4XX or 5XX)
+    return response.status_code if 'response' in locals() else None, failedString
 
-        return status_code, "Success"
-    except requests.exceptions.RequestException as e:
-        if verbose:
-            # If verbose mode is enabled, print an error message
-            print(f"Status Message for {url}: Failure")
-            print(f"{str(e)} \n")
-        
-        # Return the status code even on failure (4XX or 5XX)
-        return response.status_code if 'response' in locals() else None, str(e)
 
 # Function to update the JSON data with the results of the URL check
 def update_json(json_data, original_url, status_code, status_message):
